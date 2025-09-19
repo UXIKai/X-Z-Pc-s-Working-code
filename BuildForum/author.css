@@ -1,0 +1,18 @@
+.author-bio {
+  margin-top: 10px;
+  font-style: italic;
+  color: #555;
+}
+
+.author-post-list {
+  margin-top: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.author-post-list li {
+  padding: 8px 0;
+  cursor: pointer;
+  color: #0077cc;
+  text-decoration: underline;
+}

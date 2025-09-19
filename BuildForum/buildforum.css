@@ -1,0 +1,190 @@
+/* === GLOBAL RESETS === */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fafafa;
+  color: #111;
+  height: 100%;
+}
+
+/* === GLOBAL LAYOUT === */
+.forum-layout {
+  display: flex;
+  gap: 24px;
+  padding: 30px;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* === TOP BAR (centered title, left back, right profile) === */
+.forum-top-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* back | title | profile */
+  align-items: center;
+  padding: 20px 30px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  z-index: 2;
+}
+
+.corner-title {
+  grid-column: 2;
+  justify-self: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* Back button */
+.back-btn {
+  grid-column: 1;
+  justify-self: start;
+  background-color: #000 !important;
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.back-btn:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+/* === PROFILE ICON === */
+.profile-icon {
+  grid-column: 3;
+  justify-self: end;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+.profile-icon img { width: 100%; height: 100%; object-fit: cover; }
+.profile-icon:hover { transform: scale(1.1); }
+
+/* === BUTTON STYLES (shared) === */
+.create-post-btn,
+.post-form button[type="submit"] {
+  background-color: #000 !important;
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 500;
+  padding:10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  top: 10px;
+  Right: 30px;
+}
+.create-post-btn:hover,
+.post-form button[type="submit"]:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Create button pinned to left of its box */
+.forum-header {               /* make this a vertical stack, left-aligned */
+  margin: 60px 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;    /* this ensures the button hugs the left */
+  gap: 8px;
+}
+.create-post-btn { align-self: flex-start; margin-left: 0; }
+
+.forum-header h1 { font-size: 26px; font-weight: 700; color: #111; }
+.forum-header p { font-size: 15px; color: #555; margin-top: 8px; }
+
+/* === SIDEBAR === */
+.saved-sidebar {
+  width: 260px;
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.saved-sidebar h2 { font-size: 18px; font-weight: 600; margin-bottom: 12px; color: #222; }
+.saved-list { list-style: none; padding: 0; margin: 0; }
+.saved-item {
+  background: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.saved-item:hover { background-color: #eaeaea; }
+
+/* === MAIN CONTENT === */
+.forum-main { flex-grow: 1; }
+
+/* === POSTS === */
+.forum-posts { margin-top: 20px; }
+.forum-post {
+  background: #fff;
+  padding: 18px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s ease;
+}
+.forum-post:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+.clickable-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.meta { font-size: 14px; color: #666; margin-top: 6px; }
+.body-preview { font-size: 15px; color: #333; margin-top: 10px; line-height: 1.4; }
+
+.stats {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #333;
+  margin-top: 10px;
+}
+.clickable-author { color: #000; cursor: pointer; text-decoration: underline; }
+
+/* === POST FORM === */
+.post-form {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.post-form input,
+.post-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+  resize: vertical;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .forum-layout { flex-direction: column; padding: 20px; }
+  .saved-sidebar { width: 100%; margin-bottom: 24px; }
+  .corner-title { font-size: 20px; }
+  .profile-icon { margin-left: auto; } /* keep avatar on the right */
+}

@@ -1,0 +1,139 @@
+/* Full white background and centered layout */
+.login-fullpage {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Centered content, no box styling */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 0;
+  text-align: center;
+  background: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+}
+
+/* Headings */
+.login-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+/* Input fields */
+.login-input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  border: 1px solid #ccd0d5;
+  border-radius: 8px;
+  background-color: #f0f2f5;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.login-input:focus {
+  border-color: #1b74e4;
+  background-color: #fff;
+}
+
+/* Error styling */
+.login-error {
+  color: #e53935;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* Button group */
+.login-button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* Buttons */
+.login-back-button,
+.login-submit-button {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.login-back-button {
+  background-color: #000;
+  color: white;
+}
+
+.login-back-button:hover {
+  background-color: #333;
+}
+
+.login-submit-button {
+  background-color: #111;
+  color: white;
+}
+
+.login-submit-button:hover {
+  background-color: #333;
+}
+
+/* Sign-up text link */
+.signup-link {
+  color: #1b74e4;
+  cursor: pointer;
+  font-weight: 500;
+}
+.signup-link:hover {
+  text-decoration: underline;
+}
+.oauth-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.oauth-btn {
+  flex: 1;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
+  transition: transform 0.2s ease;
+}
+
+.oauth-btn:hover {
+  transform: scale(1.05);
+}
+
+.oauth-btn.google {
+  background-color: #fff;
+  color: #111;
+  border: 1px solid #ccc;
+}
+
+.oauth-btn.apple {
+  background-color: #000;
+  color: #fff;
+}
+
+

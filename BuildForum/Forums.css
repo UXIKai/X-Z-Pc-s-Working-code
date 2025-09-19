@@ -1,0 +1,355 @@
+/* ===== SIMPLE, CLEAN CHAT CSS (final, polished) ===== */
+
+/* --- Light theme tokens (easy to tweak later) --- */
+:root{
+  --bg: #ffffff;
+  --text: #0f1115;
+  --muted: #6b7280;
+  --line: #e6e8eb;
+  --panel: #f7f8fa;
+  --panel-hover: #eef1f4;
+  --accent: #111827;
+  --accent-600: #1f2937;
+  --brand: #0b6bff;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 6px 14px rgba(0,0,0,.08);
+  --shadow-lg: 0 12px 28px rgba(0,0,0,.15);
+}
+
+/* Base */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout: header + 2 columns */
+.chat-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;   /* sidebar | main */
+  grid-template-rows: auto 1fr auto;  /* header | content | footer */
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "sidebar footer";
+  column-gap: 16px;
+  min-height: 100dvh;
+  padding: 0 16px 16px;
+}
+
+/* ===== Header (TRUE centered title with left/back + right space) ===== */
+.forum-header {
+  grid-area: header;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+
+  /* grid: left | center | right */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  justify-items: center;
+
+  padding: 8px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: saturate(1.15) blur(6px);
+}
+
+/* Back button lives in left cell; no absolute positioning */
+.back-btn{
+  grid-column: 1;
+  position: static;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  margin-left: 16px;
+}
+.back-btn:hover{
+  transform: translateZ(8px);;
+}
+
+.back-btn:focus{
+  filter: brightness(1.05);
+  box-shadow: var(--shadow-md);
+  outline: none;
+}
+
+/* Title sits in center cell */
+.forum-header .forum-title {
+  grid-column: 2;
+  margin: 15px 0;
+  padding: 0 15px; /* (fix) was 'px 15px' */
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: .2px;
+}
+
+/* Optional subtitle centered too */
+.forum-header .forum-subtitle {
+  grid-column: 2;
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* (Right cell is implicit; add elements as needed and they'll align right) */
+
+/* Sidebar */
+.chat-sidebar {
+  grid-area: sidebar;
+  border-right: 1px solid var(--line);
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.chat-sidebar-header {
+  padding: 0 12px 12px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.chat-sidebar-header h3 { margin: 0; font-size: 16px; }
+
+.chat-sidebar-header button{
+  margin-left: auto;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform .04s ease, filter .15s ease, box-shadow .15s ease;
+}
+.chat-sidebar-header button:hover{
+  filter: brightness(1.05);
+  box-shadow: var(--shadow-md);
+}
+.chat-sidebar-header button:active{ transform: scale(.98); }
+
+.chat-list { display: grid; gap: 8px; padding: 0 12px; }
+
+.chat-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .05s ease, box-shadow .15s ease;
+  box-shadow: var(--shadow-sm);
+}
+.chat-item:hover { background: var(--panel-hover); box-shadow: var(--shadow-md); }
+.chat-item:active { transform: scale(.997); }
+.chat-item.active { border-color: #c8ced6; }
+.chat-item span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Optional: make the "Create Chat" tile pop (if you render it) */
+.chat-item.new-chat{
+  background: #eaf2ff;
+  border-color: #cfe0ff;
+  font-weight: 600;
+}
+
+/* Action icons in each chat row */
+.chat-item > div > button{
+  background: transparent;
+  border: 0;
+  padding: 4px 6px;
+  border-radius: 8px;
+  color: #8b95a3;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.chat-item > div > button:hover{
+  background: rgba(0,0,0,.04);
+  color: var(--accent);
+}
+
+/* Main column */
+.chat-main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;     /* enables inner scroll */
+  padding-top: 4px;
+}
+
+/* Thread header inside main */
+.chat-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0 10px;
+  border-bottom: 1px solid var(--line);
+}
+.chat-header img {
+  width: 40px; height: 40px;
+  border-radius: 10px; object-fit: cover; background: #e5e7eb;
+  box-shadow: var(--shadow-sm);
+}
+.chat-header h2 { margin: 0; font-size: 16px; }
+.chat-header small { color: var(--muted); }
+
+/* Messages area (scrolls) */
+.chat-window {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 8px;
+  padding-bottom: 12px; /* prevents last message being flush to footer */
+  scroll-behavior: smooth;
+}
+.chat-message { display: flex; margin: 10px 0; }
+.chat-message.user { justify-content: flex-end; }
+.chat-message.bot { justify-content: flex-start; }
+
+.message-bubble {
+  max-width: 75%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: #f3f4f6;
+  color: var(--text);
+  line-height: 1.45;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .15s ease, transform .05s ease;
+}
+.message-bubble:hover{ box-shadow: var(--shadow-md); }
+.message-bubble:active{ transform: scale(.998); }
+
+.message-bubble.user {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 4px 10px rgba(17,24,39,.15);
+}
+.bubble-content {
+  display: flex; align-items: center; gap: 8px; justify-content: space-between;
+}
+.message-bubble .bubble-content button {
+  background: transparent; border: 0; color: #c9d1e0; cursor: pointer; padding: 0 2px;
+  border-radius: 8px;
+}
+.message-bubble .bubble-content button:hover{
+  background: rgba(255,255,255,.12);
+}
+.message-time {
+  margin-top: 4px;
+  font-size: 10px;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* Composer / footer */
+.chat-footer {
+  grid-area: footer;
+  position: sticky;
+  bottom: 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 10px;
+  padding: 12px 0;
+  backdrop-filter: blur(6px);
+}
+.chat-footer input {
+  flex: 1;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 10px 14px;
+  font-size: 14px;
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+.chat-footer input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, .08);
+}
+.chat-footer button {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 25px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: filter .15s ease, transform .04s ease, box-shadow .15s ease;
+}
+.chat-footer button:hover{
+  filter: brightness(1.05);
+  box-shadow: var(--shadow-md);
+}
+.chat-footer button:active{ transform: scale(.98); }
+
+/* Empty state */
+.empty-state { text-align: center; color: var(--muted); padding: 24px 0; }
+
+/* Modal (basic) */
+.popup-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+.popup {
+  background: #fff;
+  width: min(420px, 92vw);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+}
+.popup h3 { margin: 0 0 12px; font-size: 18px; }
+.popup input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 14px;
+}
+.popup .popup-buttons {
+  display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px;
+}
+.popup .popup-buttons button {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: filter .15s ease, transform .04s ease, box-shadow .15s ease;
+}

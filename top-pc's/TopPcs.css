@@ -1,0 +1,203 @@
+/* === GLOBAL WRAPPER === */
+.top-pcs-wrapper {
+  background-color: #fafafa;
+  color: #111;
+  min-height: 100vh;
+  padding-bottom: 60px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* === BACK BUTTON BAR === */
+.top-bar-full {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ffffff;
+}
+
+.back-btn {
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  left: 35px;
+  top: 35px;;
+}
+
+.back-btn:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+/* === CONTAINER === */
+.top-pcs-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.top-pcs-container h1 {
+  font-size: 2.6rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #111;
+}
+
+/* === FLEX GRID === */
+.builds-flex {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+/* === CARD === */
+.build-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 320px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  box-shadow: 0 0 0 transparent;
+  border: 1px solid #e0e0e0;
+  min-height: 540px;
+  position: relative;
+}
+
+.build-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* === MULTI-PART IMAGE GRID === */
+.parts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.part-image {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  background-color: #f9f9f9;
+  padding: 4px;
+}
+
+/* === SINGLE IMAGE === */
+.build-image {
+  width: 150px;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #e0e0e0;
+}
+
+/* === TEXT === */
+.build-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #111;
+}
+
+.build-specs {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 16px;
+  color: #111;
+  text-align: left;
+  width: 100%;
+}
+
+.build-specs li {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+/* === LABEL & PRICE WRAPPER === */
+.build-bottom {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.performance-label {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 16px;
+  background-color: #1a1a1a;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.build-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 12px;
+}
+
+/* === VIEW BUTTON === */
+.view-btn {
+  padding: 10px 18px;
+  background-color: #000;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.view-btn:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* === TITLE IN DARK BAR === */
+.top-tech-title {
+  color: #000000;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 auto;
+  text-align: center;
+  flex-grow: 1;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .builds-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .parts-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
